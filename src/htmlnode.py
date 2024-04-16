@@ -21,12 +21,12 @@ class HTMLNode:
     #children will implement this
 
     def props_to_html(self):
-        represent_string = []
+        represent_string = ""
         if self.props is not None:
              
             for item in self.props:
-                represent_string.append("f{self.props}={self.props[item]} ")
+                represent_string += f' {item}="{self.props[item]}"'
         return represent_string
     
     def __repr__(self):
-        print(f"{self.tag} {self.value} {self.children} {self.props_to_html()}")
+        print(f"HTMLNode({self.tag}, {self.value}, children: {self.children}, {self.props_to_html()})")
