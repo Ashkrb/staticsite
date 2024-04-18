@@ -30,3 +30,20 @@ class HTMLNode:
     
     def __repr__(self):
         print(f"HTMLNode({self.tag}, {self.value}, children: {self.children}, {self.props_to_html()})")
+
+class LeafNode(HTMLNode):
+    def __init__(self,tag=None,value=None,props=None):
+                super().__init__(tag,value,props)
+                
+
+    def to_html(self):
+        if self.value == None:
+            raise ValueError("leaf has no value")
+        properties = self.props_to_html()
+        if self.tag is None:
+             return self.value
+        
+        return (f"<{self.tag}{properties}>{self.value}</{self.tag}>")
+    
+    def __repr__(self):
+         return f"LeadNode({self.tag}{self.value}{self.props})"
