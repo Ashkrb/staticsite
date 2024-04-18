@@ -1,3 +1,4 @@
+from textnode import TextNode
 class HTMLNode:
     def __init__(self,tag=None,value=None,children=None,props=None):
         self.tag = tag
@@ -30,6 +31,23 @@ class HTMLNode:
     
     def __repr__(self):
         print(f"HTMLNode({self.tag}, {self.value}, children: {self.children}, {self.props_to_html()})")
+    def text_node_to_html_node(text_node):
+         if text_node.type == "text":
+              return LeafNode(None,text_node.text)
+         elif text_node.type == "bold":
+              return LeafNode("b",text_node.text)
+         elif text_node.type == "italic":
+              return LeafNode("i",text_node.text)
+         elif text_node.type == "code":
+              return LeafNode("code",text_node.text)
+         elif text_node.type == "link":
+              props = {"href": text_node.url}
+              return LeafNode("a",text_node.text,props)
+         elif text_node.type == "image":
+              props = {"src": text_node.url, "alt": text_node.text}
+              return LeafNode("img","",props)
+         else:
+              raise Exception("not valid type")
 
 class LeafNode(HTMLNode):
     def __init__(self,tag,value,props=None):
