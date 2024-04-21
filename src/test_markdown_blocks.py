@@ -1,5 +1,5 @@
 import unittest
-from splitblocks import (
+from markdown_blocks import (
     markdown_to_html_node,
     markdown_to_blocks,
     block_to_block_type,
