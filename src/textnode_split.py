@@ -9,7 +9,7 @@ def split_nodes_image(old_nodes):
             final_nodes.append(node)
             continue
         nodes_text = node.text
-        img_tuples = extract_markdown_images(node.text)
+        img_tuples = extract_markdown_images(nodes_text)
         if len(img_tuples) == 0:
             final_nodes.append(node)
             continue
@@ -39,9 +39,11 @@ def split_nodes_link(old_nodes):
             final_nodes.append(node)
             continue
         for lnk in link_tuples:
-             if lnk[1] == "" or lnk[1] is None:
-                continue
-             section = node.text.split(f"[{lnk[0]}]({lnk[1]})", 1)
+            
+                
+             section = nodes_text.split(f"[{lnk[0]}]({lnk[1]})", 1)
+             if len(section) != 2:
+                raise ValueError("Invalid markdown, link section not closed")
              if section[0] != "":
                  
                 final_nodes.append(TextNode(section[0],"text"))

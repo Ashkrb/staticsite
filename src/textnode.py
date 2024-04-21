@@ -21,7 +21,7 @@ class TextNode:
         
 
     def __repr__(self):
-        return f"TextNode({self.text}{self.text_type}{self.url})"
+        return f"TextNode({self.text}, {self.text_type}, {self.url})"
     
     def split_nodes_delimiter(old_nodes, delimiter, text_type):
         new_nodes = []
