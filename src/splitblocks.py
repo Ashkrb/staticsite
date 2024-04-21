@@ -6,8 +6,7 @@ block_type_olist = "ordered_list"
 block_type_ulist = "unordered_list"
 from htmlnode import (HTMLNode, ParentNode, LeafNode)
 from textnode import TextNode
-from textnode_regex import text_to_textnodes
-from htmlnode import text_node_to_html_node
+from textnode_split import text_to_textnodes
 
 
 
@@ -114,7 +113,7 @@ def text_to_children(text):
     text_nodes = text_to_textnodes(text)
     children = []
     for text_node in text_nodes:
-        html_node = text_node_to_html_node(text_node)
+        html_node = HTMLNode.text_node_to_html_node(text_node)
         children.append(html_node)
     return children
 

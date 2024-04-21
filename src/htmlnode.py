@@ -32,18 +32,18 @@ class HTMLNode:
     def __repr__(self):
         print(f"HTMLNode({self.tag}, {self.value}, children: {self.children}, {self.props_to_html()})")
     def text_node_to_html_node(text_node):
-         if text_node.type == "text":
+         if text_node.text_type == "text":
               return LeafNode(None,text_node.text)
-         elif text_node.type == "bold":
+         elif text_node.text_type == "bold":
               return LeafNode("b",text_node.text)
-         elif text_node.type == "italic":
+         elif text_node.text_type == "italic":
               return LeafNode("i",text_node.text)
-         elif text_node.type == "code":
+         elif text_node.text_type == "code":
               return LeafNode("code",text_node.text)
-         elif text_node.type == "link":
+         elif text_node.text_type == "link":
               props = {"href": text_node.url}
               return LeafNode("a",text_node.text,props)
-         elif text_node.type == "image":
+         elif text_node.text_type == "image":
               props = {"src": text_node.url, "alt": text_node.text}
               return LeafNode("img","",props)
          else:

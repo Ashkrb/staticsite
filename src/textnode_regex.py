@@ -25,22 +25,3 @@ def extract_markdown_links(text):
         #splititem = re.split('] | [ | ) | (')
         list_of_links.append((item[0],item[1]))
     return list_of_links
-def test_text_to_textnodes(self):
-        nodes = TextNode.text_to_textnodes(
-            "This is **text** with an *italic* word and a `code block` and an ![image](https://i.imgur.com/zjjcJKZ.png) and a [link](https://boot.dev)"
-        )
-        self.assertListEqual(
-            [
-                TextNode("This is ", "text"),
-                TextNode("text", "bold"),
-                TextNode(" with an ", "text"),
-                TextNode("italic", "italic"),
-                TextNode(" word and a ", "text"),
-                TextNode("code block", "code"),
-                TextNode(" and an ", "text"),
-                TextNode("image", "image", "https://i.imgur.com/zjjcJKZ.png"),
-                TextNode(" and a ", "text"),
-                TextNode("link", "link", "https://boot.dev"),
-            ],
-            nodes,
-        )
